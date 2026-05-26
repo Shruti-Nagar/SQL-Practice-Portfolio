@@ -1,1 +1,13 @@
+SELECT * FROM north_american_cities;
 
+city	country	population	latitude	longitude
+Guadalajara	Mexico	1500800	20.659699	-103.349609
+Toronto	Canada	2795060	43.653226	-79.383184
+Houston	United States	2195914	29.760427	-95.369803
+New York	United States	8405837	40.712784	-74.005941
+Philadelphia	United States	1553165	39.952584	-75.165222
+Havana	Cuba	2106146	23.05407	-82.345189
+.....
+
+
+####List all the Canadian cities and their populations
