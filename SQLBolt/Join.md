@@ -1,3 +1,5 @@
+### Inner Joins
+
 Table: movies
 | id | title            | director        | year | length_minutes |
 |----|------------------|----------------|------|----------------|
@@ -20,21 +22,67 @@ Table: boxoffice
 | 6        | 8.0    | 261441092      | 370001000           |
 ....
 
-### Find the domestic and international sales for each movie
+
+Find the domestic and international sales for each movie.
 ```sql
 select m.title, b.domestic_sales, b.international_sales
 from movies m
 inner join boxoffice b on m.id = b.movie_id;
 ```
 
-### Show the sales numbers for each movie that did better internationally rather than domestically
+Show the sales numbers for each movie that did better internationally rather than domestically.
+```sql
 select m.title, b.domestic_sales, b.international_sales
 from movies m
 inner join boxoffice b on m.id = b.movie_id
 where b.domestic_sales < b.international_sales;
+```
 
-### List all the movies by their ratings in descending order
+List all the movies by their ratings in descending order.
+```sql
 select title, rating
 from movies m
 join boxoffice b on m.id = b.movie_id
 order by rating desc;
+```
+
+### Outer Joins
+
+Table: buildings (Read-only)
+| building_name | capacity |
+|---------------|----------|
+| 1e            | 24       |
+| 1w            | 32       |
+| 2e            | 16       |
+| 2w            | 20       |
+...
+
+Table: employees (Read-only)
+| role     | name       | building | years_employed |
+|----------|------------|----------|----------------|
+| Engineer | Becky A.   | 1e       | 4              |
+| Engineer | Dan B.     | 1e       | 2              |
+| Engineer | Sharon F.  | 1e       | 6              |
+| Engineer | Dan M.     | 1e       | 4              |
+| Engineer | Malcom S.  | 1e       | 1              |
+| Artist   | Tylar S.   | 2w       | 2              |
+...
+
+Find the list of all buildings that have employees
+```sql
+select distinct building
+from employees;
+```
+
+Find the list of all buildings and their capacity
+```sql
+select * from buildings;
+```
+
+List all buildings and the distinct employee roles in each building (including empty buildings)
+```sql
+select distinct(building_name), role
+from buildings b
+left join employees e
+on b.building_name = e.building;
+```
