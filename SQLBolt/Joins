@@ -21,7 +21,8 @@ Table: boxoffice
 ....
 
 ### Find the domestic and international sales for each movie
-```select m.title, b.domestic_sales, b.international_sales
+``` sql
+select m.title, b.domestic_sales, b.international_sales
 from movies m
 inner join boxoffice b on m.id = b.movie_id;
 ```
