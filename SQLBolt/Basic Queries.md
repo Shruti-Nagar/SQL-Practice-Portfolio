@@ -13,27 +13,27 @@ Table: north_american_cities
 | Havana       | Cuba           | 2106146    | 23.054070 | -82.345189  |
 ...
 
-### List all the Canadian cities and their populations
+List all the Canadian cities and their populations.
 ```sql
 SELECT City, Population 
 FROM north_american_cities
 WHERE Country = 'Canada';
 ```
 
-### Order all the cities in the United States by their latitude from north to south
+Order all the cities in the United States by their latitude from north to south.
 ```sql
 Select City from north_american_cities
 Where Country = "United States"
 Order by latitude desc;
 ```
 
-### List all the cities west of Chicago, ordered from west to east
+List all the cities west of Chicago, ordered from west to east.
 ```sql
 select city, longitude from north_american_cities
 where longitude < (select longitude from north_american_cities where city = "Chicago")
 order by longitude asc;
 ```
-### List the two largest cities in Mexico (by population)
+List the two largest cities in Mexico (by population).
 ```sql
 select City 
 from north_american_cities
@@ -42,7 +42,7 @@ order by population desc
 limit 2;
 ```
 
-### List the third and fourth largest cities (by population) in the United States and their population
+List the third and fourth largest cities (by population) in the United States and their population.
 ```sql
 select * from north_american_cities
 where country = "United States"
