@@ -86,3 +86,19 @@ from buildings b
 left join employees e
 on b.building_name = e.building;
 ```
+
+Find the name and role of all employees who have not been assigned to a building 
+```sql
+select name, role
+from employees where building is null;
+```
+
+Find the names of the buildings that hold no employees.
+```sql
+select building_name
+from buildings
+left join employees
+on employees.building = buildings.building_name
+where building is null;
+```
+
