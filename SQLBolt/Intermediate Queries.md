@@ -102,3 +102,83 @@ on employees.building = buildings.building_name
 where building is null;
 ```
 
+### Aggregate Operations
+
+List all movies and their combined sales in millions of dollars.
+```sql
+select title, (domestic_sales+international_sales)/1000000 as combined_sales
+from movies left join boxoffice
+on movies.id=boxoffice.movie_id
+group by combined_sales;
+```
+
+List all movies and their ratings in percent
+```sql
+select title, concatenate(rating*10, "%" as ratings
+from movies left join boxoffice
+on movies.id = boxoffice.movie_id;
+```
+
+List all movies that were released on even number years
+```sql
+select * from movies
+where year%2 == 0;
+```
+
+Find the longest time that an employee has been at the studio
+```sql
+select max(years_employed)
+from Employees
+```
+
+For each role, find the average number of years employed by employees in that role
+```sql
+select role, avg(years_employed)
+from Employees
+group by role;
+```
+
+Find the total number of employee years worked in each building
+```sql
+select building, sum(years_employed)
+from Employees
+group by building;
+```
+
+Find the number of Artists in the studio (without a HAVING clause).
+```sql
+select role, count(*) total_artists
+from employees
+where role = 'Artist';
+```
+
+Find the number of Employees of each role in the studio
+```sql
+select role, count(*) total_emp
+from employees
+group by role;
+```
+
+Find the total number of years employed by all Engineers
+```sql
+select role, sum(years_employed) total_years
+from employees
+group by role
+having role = 'Engineer';
+```
+
+Find the number of movies each director has directed
+```sql
+select director, count(*) as total_movies
+from movies
+group by director;
+```
+
+Find the total domestic and international sales that can be attributed to each director
+```sql
+select director, sum(domestic_sales, international_sales) as gross_sales
+from movies m
+left join boxoffice b
+on m.id = b.movie_id
+group by director
+```
