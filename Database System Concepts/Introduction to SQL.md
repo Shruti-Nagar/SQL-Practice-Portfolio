@@ -103,4 +103,39 @@ except
 (select course_id from section
 where semester = 'Spring' and year = 2018);
 ```
-
+### AGGREGATIONS
+```sql
+-- Find the average name of instructors in the Computer Science department.
+select avg(salary) as avg_salary
+from instructor
+where dept_name = 'Comp. Sci.';
+```
+```sql
+-- Find the total number of instructors who teach a course in the Spring 2018 semester.
+select count(distinct ID) as total_instructors
+from teaches
+where semester = 'Spring' and year = 2018;
+```
+```sql
+-- Find the average salary in each department.
+select dept_name, round(avg(salary)) as avg_salary
+from instructor
+group by dept_name
+order by dept_name;
+```
+```sql
+-- Find the number of instructors in each department who teach a course in the Spring 2018 semester.
+select i.dept_name, count(distinct i.id) as instructor_count
+	from teaches t, instructor i
+	where t.id = i.id
+		and t.semester = 'Spring' and t.year = 2018
+	group by dept_name;
+```
+```sql
+-- Departments where the average salary of the instructors is more than $42,000.
+select dept_name, avg(salary) as avg_salary
+from instructor
+group by dept_name
+having avg(salary)>42000
+order by dept_name;
+```
