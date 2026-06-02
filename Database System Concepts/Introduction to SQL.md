@@ -187,3 +187,13 @@ group by dept_name
 having avg(salary)>42000
 order by dept_name;
 ```
+```sql
+/* For each course section offered in 2017, find the average total credits (tot cred) of all students 
+enrolled in the section, if the section has at least 2 students */
+select course_id, semester, year, sec_id, round(avg(tot_cred))
+from student s, takes t
+where s.id = t.id
+and t.year = 2017
+group by course_id, semester, year, sec_id
+having count(s.id)>=2
+```
