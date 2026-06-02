@@ -1,6 +1,44 @@
 ### BASIC QUERIES
 
 ```sql
+select * 
+from instructor 
+where dept_name='Physics';
+```
+```sql
+select *
+from instructor i, teaches t
+where i.id = t.id;
+```
+```sql
+select course_id
+from section
+where semester='Fall' and Year=2017
+intersect
+select course_id
+from section
+where semester='Spring' and Year=2018;
+```
+```sql
+select course_id
+from section
+where semester='Fall' and Year=2017
+except
+select course_id
+from section
+where semester='Spring' and Year=2018;
+```
+```sql
+select id, name from instructor
+where dept_name='Physics';
+```
+```sql
+select i.id, i.name
+from instructor i, department d
+where i.dept_name = d.dept_name
+and building = 'Watson';
+```
+```sql
 -- Find the department names of all instructors
 select dept_name from instructor;
 ```
