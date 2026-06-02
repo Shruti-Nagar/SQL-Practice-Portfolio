@@ -141,3 +141,4 @@ group by dept_name
 having avg(salary)>42000
 order by dept_name;
 ```
+e
