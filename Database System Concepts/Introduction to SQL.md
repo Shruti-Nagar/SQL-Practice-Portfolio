@@ -1,3 +1,5 @@
+### BASIC QUERIES
+
 ```sql
 -- Find the department names of all instructors
 select dept_name from instructor;
