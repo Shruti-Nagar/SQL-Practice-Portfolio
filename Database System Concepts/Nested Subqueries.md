@@ -34,3 +34,18 @@ where (course_id, sec_id, semester, year) in (
 	from teaches
 	where id = 10101);
 ```
+```sql
+-- Find the names of all instructors whose salary is greater than at least one instructor in the Biology department.
+select name
+from instructor
+where salary > some (
+		select salary 
+		from instructor 
+		where dept_name = 'Biology')
+
+--alternate query (self join)
+select a.name 
+	from instructor a, instructor b
+	where a.salary> b.salary;
+	and b.dept_name = 'Biology';
+```
