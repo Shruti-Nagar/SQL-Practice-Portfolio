@@ -49,3 +49,12 @@ select a.name
 	where a.salary> b.salary;
 	and b.dept_name = 'Biology';
 ```
+```sql
+-- find the names of all instructors that have a salary value greater than that of each instructor in the Biology department.
+select name 
+	from instructor
+	where salary > all (
+			select salary 
+			from instructor 
+			where dept_name = 'Biology');
+```
