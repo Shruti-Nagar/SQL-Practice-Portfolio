@@ -26,6 +26,11 @@ select name
 	where name not in ('Mozart', 'Einstein');
 ```
 ```sql
-/* Find the total number of (distinct) students who have taken course sections taught by the instructor with ID 110011. */
-
+/* Find the total number of (distinct) students who have taken course sections taught by the instructor with ID 10101. */
+select count (distinct id)
+from takes
+where (course_id, sec_id, semester, year) in (
+	select course_id, sec_id, semester, year
+	from teaches
+	where id = 10101);
 ```
