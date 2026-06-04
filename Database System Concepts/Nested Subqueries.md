@@ -68,3 +68,18 @@ select dept_name
 			from instructor
 			group by dept_name);
 ```
+
+CIRCLE BACK ON THIS QUERY TO UNDERSTAND BETTER
+```sql
+-- Find all students who have taken all courses offered in the Biology department.
+select s.ID, s.name 
+	from student s
+	where not exists ((
+			select course_id 
+			from course
+			where dept_name = 'Biology')
+			except (
+				select t.course_id from teaches t
+				where t.id = s.id	
+			))
+```
