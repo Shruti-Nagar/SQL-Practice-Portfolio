@@ -58,3 +58,13 @@ select name
 			from instructor 
 			where dept_name = 'Biology');
 ```
+```sql
+-- Find the departments that have the highest average salary
+select dept_name
+	from instructor
+	group by dept_name
+	having avg(salary) >= all (
+			select avg(salary)
+			from instructor
+			group by dept_name);
+```
