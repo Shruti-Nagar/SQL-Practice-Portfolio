@@ -70,6 +70,7 @@ select name
 			from instructor 
 			where dept_name = 'Biology');
 ```
+###  Test for Empty Relations
 ```sql
 -- Find the departments that have the highest average salary
 select dept_name
@@ -81,12 +82,13 @@ select dept_name
 			group by dept_name);
 ```
 
-CIRCLE BACK ON THIS QUERY TO UNDERSTAND BETTER
+
 ```sql
 -- Find all students who have taken all courses offered in the Biology department.
 select s.ID, s.name 
 	from student s
 	where not exists ((
+					-- if an empty set then included in output else not.
 			select course_id 
 			from course
 			where dept_name = 'Biology')
@@ -95,3 +97,5 @@ select s.ID, s.name
 				where t.id = s.id	
 			))
 ```
+### Test for the Absence of Duplicate Tuples
+
