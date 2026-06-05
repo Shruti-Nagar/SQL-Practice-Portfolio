@@ -105,7 +105,24 @@ select s.ID, s.name
 			except (
 				select t.course_id from teaches t
 				where t.id = s.id	
-			))
+			));
 ```
 ### Test for the Absence of Duplicate Tuples
-
+```sql
+-- Find all courses that were offered at most once in 2017.
+select c.course_id
+from course c
+where unique (select s.course_id 
+				from section s
+				where c.course_id = s.course_id
+				and s.year = 2017);
+```
+```sql
+-- Alternate **Some SQL softwares do not implement UNIQUE predicate
+select c.course_id
+from course c
+where 1 >= (select count(s.course_id) 
+				from section s
+				where c.course_id = s.course_id
+				and s.year = 2017);
+```
