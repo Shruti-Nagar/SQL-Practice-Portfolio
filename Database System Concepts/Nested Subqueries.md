@@ -33,6 +33,18 @@ where (course_id, sec_id, semester, year) in (
 	select course_id, sec_id, semester, year
 	from teaches
 	where id = 10101);
+
+-- Alternate way
+select count (distinct id)
+	from takes s
+	where exists (
+		select course_id, sec_id, semester, year
+		from teaches t 
+		where t.id = 10101 
+		and t.course_id = s.course_id
+		and t.sec_id = s.sec_id
+		and t.semester = s.semester
+		and t.year = s.year);
 ```
 ```sql
 -- Find the names of all instructors whose salary is greater than at least one instructor in the Biology department.
