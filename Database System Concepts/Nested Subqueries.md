@@ -70,7 +70,6 @@ select name
 			from instructor 
 			where dept_name = 'Biology');
 ```
-###  Test for Empty Relations
 ```sql
 -- Find the departments that have the highest average salary
 select dept_name
@@ -82,7 +81,18 @@ select dept_name
 			group by dept_name);
 ```
 
-
+###  Test for Empty Relations
+```sql
+-- Find all courses taught in both the Fall 2017 semester and in the Spring 2018 semester using Correlated Subquery.
+select course_id 
+	from section a
+	where semester = 'Spring'
+	and year = 2018 and exists (select course_id 
+		from section b
+		where semester = 'Fall'
+		and year = 2017
+		and a.course_id = b.course_id);
+```
 ```sql
 -- Find all students who have taken all courses offered in the Biology department.
 select s.ID, s.name 
