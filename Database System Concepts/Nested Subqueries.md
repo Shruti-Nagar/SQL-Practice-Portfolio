@@ -154,3 +154,10 @@ from (select dept_name, avg(salary)
 		group by dept_name) as dept_avg_salary(dept_name, avg_salary) -- can give alias to attributes too while declaring a suquery name
 where avg_salary>42000;
 ```
+```sql
+-- Find the maximum salary across all departments of the total of all instructors’ salaries in each department.
+select max(total_salary)
+	from (select dept_name, sum(salary)
+			from instructor
+			group by dept_name) as dept_salary(dept_name, total_salary);
+```
