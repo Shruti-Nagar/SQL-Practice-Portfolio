@@ -145,3 +145,4 @@ select course_id
 	where c.course_id = s.course_id
 	and year = 2017);
 ```
+### From Clause SubQueries
