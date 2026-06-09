@@ -126,3 +126,22 @@ where 1 >= (select count(s.course_id)
 				where c.course_id = s.course_id
 				and s.year = 2017);
 ```
+### Find Duplicates
+```sql
+-- Find all courses that were offered at least twice in 2017.
+select course_id
+	from course c
+	where not unique (select course_id
+	from section s 
+	where c.course_id = s.course_id
+	and year = 2017);
+```
+```sql
+-- Alternate
+select course_id
+	from course c
+	where 1 < (select count(s.course_id)
+	from section s 
+	where c.course_id = s.course_id
+	and year = 2017);
+```
