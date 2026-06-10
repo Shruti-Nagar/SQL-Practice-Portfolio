@@ -46,3 +46,20 @@ where salary < (select avg(salary)
 ```
 
 ### INSERTION
+```sql
+-- insert the course CS-437 in the Computer Science department with title “Database Systems” and four credit hours.
+select * from course
+insert into course values (
+	'CS-437', 'Database Systems', 'Comp. Sci.', 4
+);
+```
+```sql
+/* Make each student in the Music department who has earned more than 144 credit 
+	hours an instructor in the Music department with a salary of $18,000. */
+insert into instructor (
+		select ID, name, dept_name, 18000
+			from student
+			where dept_name = 'Music'
+			and tot_cred > 144
+			);
+```
