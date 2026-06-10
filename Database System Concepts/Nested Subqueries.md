@@ -145,7 +145,7 @@ select course_id
 	where c.course_id = s.course_id
 	and year = 2017);
 ```
-### From Clause SubQueries
+### FROM Clause SubQueries
 ```sql
 -- Find the average instructors salaries of those departments where the average salary is greater than $42,000.
 select dept_name, avg_salary
@@ -162,13 +162,7 @@ select max(total_salary)
 			group by dept_name) as dept_salary(dept_name, total_salary);
 ```
 ```sql
-select name, salary, avg_salary
-	from instructor i, 
-	lateral (select avg(salary) as avg_salary
-	from instructor n
-	where i.dept_name = n.dept_name);
-```
-```sql
+-- Find the names of each instructor, along with their salary and the average salary in their department
 select name, salary, avg_salary
 	from instructor i,
 	lateral (
@@ -177,4 +171,3 @@ select name, salary, avg_salary
 		where i.dept_name = n.dept_name
 	) avgSalary
 ```
-
