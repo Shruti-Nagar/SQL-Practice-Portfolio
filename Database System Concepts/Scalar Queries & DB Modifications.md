@@ -93,11 +93,10 @@ set salary = case
 				else salary*1.05
 			end;
 ```
-```
-an update where we set the tot cred attribute of each student
-tuple to the sum of the credits of courses successfully completed by the student. We
-assume that a course is successfully completed if the student has a grade that is neither
-'F' nor null.
+```sql
+-- **work on it later**
+an update where we set the tot cred attribute of each student tuple to the sum of the credits of courses successfully completed
+by the student. We assume that a course is successfully completed if the student has a grade that is neither 'F' nor null.
 ```
 
 
