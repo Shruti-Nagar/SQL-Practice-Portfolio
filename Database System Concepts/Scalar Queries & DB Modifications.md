@@ -62,4 +62,56 @@ insert into instructor (
 			where dept_name = 'Music'
 			and tot_cred > 144
 			);
+
+-- values: when manually inserting values in a relation
+-- select: when getting the rows from another query
 ```
+### UPADTION
+```sql
+-- Annual salary increases are being made, and salaries of all instructors are to be increased by 5 percent. 
+update instructor
+set salary = salary*1.05;
+```
+```sql
+-- A salary increase is to be paid only to instructors with a salary of less than $70,000.
+update instructor
+set salary = salary*1.05
+where salary < 70000;
+```
+```sql
+-- Give a 5 percent salary raise to instructors whose salary is less than average
+update instructor
+set salary = salary*1.05
+where salary < (select avg(salary) 
+				from instructor);
+```
+```sql
+-- All instructors with salary over $100,000 receive a 3 percent raise, whereas all others receive a 5 percent raise. 
+update instructor
+set salary = case 
+				when salary > 100000 then salary*1.03
+				else salary*1.05
+			end;
+```
+```
+an update where we set the tot cred attribute of each student
+tuple to the sum of the credits of courses successfully completed by the student. We
+assume that a course is successfully completed if the student has a grade that is neither
+'F' nor null.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
