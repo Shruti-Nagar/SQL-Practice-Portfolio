@@ -168,3 +168,13 @@ select name, salary, avg_salary
 	from instructor n
 	where i.dept_name = n.dept_name);
 ```
+```sql
+select name, salary, avg_salary
+	from instructor i,
+	lateral (
+		select round(avg(salary)) as avg_salary
+		from instructor n
+		where i.dept_name = n.dept_name
+	) avgSalary
+```
+
