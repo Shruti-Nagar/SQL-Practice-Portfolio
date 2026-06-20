@@ -22,3 +22,11 @@ from (student natural join takes)
 join course
 using (course_id) -- multiple attributes can be mentioned in the Using condition
 ```
+
+### Join ON condiiton
+```sql
+select name, title
+	from student 
+	join takes on student.id = takes.id
+	join course on takes.course_id = course.course_id;
+```
