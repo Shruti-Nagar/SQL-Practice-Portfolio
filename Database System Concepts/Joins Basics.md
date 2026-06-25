@@ -30,3 +30,24 @@ select name, title
 	join takes on student.id = takes.id
 	join course on takes.course_id = course.course_id;
 ```
+```sql
+select *
+from student s 
+	left outer join takes t
+	on s.id = t.id
+order by s.id
+```
+```sql
+select * name, title
+from (student natural join takes)
+join course
+using (course_id) from student inner join takes using (ID);
+```
+```sql
+select c.course_id, sec_id, building, room_number
+from course c, section s
+where c.course_id = s.course_id
+and dept_name = 'Physics'
+and s.semester = 'Fall'
+and s.year = 2017;
+```
