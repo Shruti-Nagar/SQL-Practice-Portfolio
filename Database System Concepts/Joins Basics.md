@@ -31,6 +31,7 @@ select name, title
 	join course on takes.course_id = course.course_id;
 ```
 ```sql
+-- Find all students and the courses they have taken (include students who haven't taken any course
 select *
 from student s 
 	left outer join takes t
@@ -38,12 +39,14 @@ from student s
 order by s.id
 ```
 ```sql
+-- List the names of students along with the titles of courses they have taken
 select * name, title
 from (student natural join takes)
 join course
 using (course_id) from student inner join takes using (ID);
 ```
 ```sql
+-- Find all Physics department course sections offered in Fall 2017 with building and room details
 select c.course_id, sec_id, building, room_number
 from course c, section s
 where c.course_id = s.course_id
